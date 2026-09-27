@@ -19,25 +19,25 @@
 
 const questionsText = `
 
-প্রশ্ন 1. নিচের কোনটি পৃথিবীর কেন্দ্রমণ্ডলের ভেতরের অংশে থাকে? (ক) নিকেল (খ) লোহা (গ) ক ও খ (ঘ) তামা
+প্রশ্ন 1. Demo question demo question demo question (ক) Option (খ) Option (গ) Option (ঘ) Option
 
-প্রশ্ন 2. ভূ-ত্বকের কোন অংশটি থেকে আগ্নেয়গিরির উদ্গীরণে গলিত লাভা বের হয়ে আসে? (ক) ভূ-ত্বক (খ) শিলাখণ্ড (গ) গুরুমন্ডল (ঘ) কেন্দ্রমন্ডল
+প্রশ্ন 2. Demo question demo question demo question (ক) Option (খ) Option (গ) Option (ঘ) Option
 
-প্রশ্ন 3. বায়ুমণ্ডলে — রয়েছে মূলত (ক) অক্সিজেন ও কার্বন ডাইঅক্সাইড (খ) অক্সিজেন ও নাইট্রোজেন (গ) অক্সিজেন ও জলীয় বাষ্প (ঘ) অক্সিজেন ও ধূলিকণা
+প্রশ্ন 3. Demo question demo question demo question (ক) Option (খ) Option (গ) Option (ঘ) Option
 
-প্রশ্ন 4. কোয়ান্টাম তত্ত্ব কখন আবিষ্কৃত হয়? (ক) অষ্টাদশ শতাব্দীতে (খ) উনিশ শতাব্দীর শেষে (গ) বিংশ শতাব্দীর শুরুতে (ঘ) বিংশ শতাব্দীর শেষে
+প্রশ্ন 4. Demo question demo question demo question (ক) Option (খ) Option (গ) Option (ঘ) Option
 
-প্রশ্ন 5. পদার্থবিজ্ঞানের মূল নীতি কোনটি? (ক) শক্তির সংরক্ষণশীলতা নীতি (খ) বল বৃদ্ধিকরণ নীতি (গ) লিভারের নীতি (ঘ) উপরের সবগুলো
+প্রশ্ন 5. Demo question demo question demo question (ক) Option (খ) Option (গ) Option (ঘ) Option
 
-প্রশ্ন 6. তরলে নিমজ্জিত কোনো বস্তুর আয়তন তার দ্বারা অপসারিত তরলের আয়তনের সমান, এটি কী? (ক) সূত্র (খ) তত্ত্ব (গ) নীতি (ঘ) অনুকল্প
+প্রশ্ন 6. Demo question demo question demo question (ক) Option (খ) Option (গ) Option (ঘ) Option
 
-প্রশ্ন 7. পর্যবেক্ষণলব্ধ ঘটনার কারণ কী হতে পারে সে সম্পর্কে ধারণার ভিত্তিতে অস্থায়ী প্রাথমিক ব্যাখ্যা হচ্ছে (ক) তত্ত্ব (খ) অনুকল্প (গ) নীতি (ঘ) স্বীকার্য
+প্রশ্ন 7. Demo question demo question demo question (ক) Option (খ) Option (গ) Option (ঘ) Option
 
-প্রশ্ন 8. সৌরকেন্দ্রিক তত্ত্বের ধারণা দেন কে? (ক) কেপলার (খ) রোমার (গ) কোপারনিকাস (ঘ) টাইকোব্রাহে
+প্রশ্ন 8. Demo question demo question demo question (ক) Option (খ) Option (গ) Option (ঘ) Optionে
 
-প্রশ্ন 9. চিরায়ত পদার্থবিজ্ঞানে স্থান হচ্ছে (ক) ত্রিমাত্রিক এক বিস্তৃতি (খ) দ্বিমাত্রিক দুই বিস্তৃতি (গ) দ্বিমাত্রিক এক বিস্তৃতি (ঘ) ত্রিমাত্রিক দুই বিস্তৃতি
+প্রশ্ন 9. চDemo question demo question demo question (ক) Option (খ) Option (গ) Option (ঘ) Option
 
-প্রশ্ন 10. সর্বপ্রথম কোয়ান্টাম তত্ত্ব প্রদান করেন কে? (ক) আইনস্টাইন (খ) ম্যাক্স প্লাঙ্ক (গ) নিউটন (ঘ) রাদারফোর্ড
+প্রশ্ন 10. Demo question demo question demo question (ক) Option (খ) Option (গ) Option (ঘ) Optionড
 
 `;
 
