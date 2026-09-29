@@ -260,7 +260,7 @@
                     <div class="time-unit">
 
                         <span class="num" id="minutes">
-                            30
+                            60
                         </span>
 
                         <span class="word">
@@ -373,6 +373,30 @@
 
         <div id="questionsContainer"></div>
 
+        <!-- =====================================
+             SUBMIT EXAM
+        ====================================== -->
+        <section class="exam-submit-section">
+            <button id="submitExamBtn" class="submit-exam-btn" type="button">
+                Submit Exam ❤️
+            </button>
+        </section>
+
+        <!-- =====================================
+             ANSWER RESULT
+        ====================================== -->
+        <section id="answerResult" class="answer-result" aria-live="polite">
+            <div class="answer-result-head">
+                <div>
+                    <span class="answer-result-label">YOUR ANSWERS</span>
+                    <h2>Answer Sheet ❤️</h2>
+                </div>
+                <span id="answeredCount" class="answered-count">0 / 0</span>
+            </div>
+
+            <div id="answerList" class="answer-list"></div>
+        </section>
+
 
     </main>
 
@@ -421,7 +445,7 @@
             </button>
         </div>
     </div>
-    <script src="script.js"></script>
+    <script src="site script.js"></script>
 </body>
 
 </html>
