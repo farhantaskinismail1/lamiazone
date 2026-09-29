@@ -91,15 +91,17 @@ const container = document.getElementById('questionsContainer');
 
 const questionCount = document.getElementById('questionCount');
 
-if (questionCount) {
-  questionCount.textContent = questions.length;
-}
+questionCount.textContent = questions.length;
 
-/* Store selected answer for every question */
+/* =====================================================
+   STORE SELECTED ANSWERS
+===================================================== */
 
 const selectedAnswers = new Array(questions.length).fill(null);
 
-/* Create every question */
+/* =====================================================
+   CREATE QUESTIONS
+===================================================== */
 
 questions.forEach((item, index) => {
   const card = document.createElement('div');
@@ -186,10 +188,6 @@ const answerList = document.getElementById('answerList');
 const answeredCount = document.getElementById('answeredCount');
 
 function renderAnswerSheet() {
-  if (!answerList || !answeredCount || !answerResult) {
-    return;
-  }
-
   answerList.innerHTML = '';
 
   let answered = 0;
@@ -243,11 +241,9 @@ function renderAnswerSheet() {
   });
 }
 
-if (submitExamBtn) {
-  submitExamBtn.addEventListener('click', () => {
-    renderAnswerSheet();
-  });
-}
+submitExamBtn.addEventListener('click', () => {
+  renderAnswerSheet();
+});
 
 /* =====================================================
    COUNTDOWN TIMER
@@ -294,7 +290,8 @@ function getRemainingSeconds() {
 /* =====================================================
    START EXAM TIMER
 
-   Refresh করলে নতুন করে 60 মিনিট শুরু হবে না।
+   Refresh করলে নতুন করে
+   60 মিনিট শুরু হবে না।
 ===================================================== */
 
 function startExamTimer() {
@@ -327,27 +324,21 @@ function updateCountdown() {
 
   const seconds = totalSeconds % 60;
 
-  if (minutesElement) {
-    minutesElement.textContent = String(minutes).padStart(2, '0');
-  }
+  minutesElement.textContent = String(minutes).padStart(2, '0');
 
-  if (secondsElement) {
-    secondsElement.textContent = String(seconds).padStart(2, '0');
-  }
+  secondsElement.textContent = String(seconds).padStart(2, '0');
 
-  if (countdown) {
-    countdown.classList.remove('warning', 'danger');
-  }
+  countdown.classList.remove('warning', 'danger');
 
   /* 5 মিনিটের নিচে */
 
-  if (countdown && totalSeconds <= 5 * 60 && totalSeconds > 60) {
+  if (totalSeconds <= 5 * 60 && totalSeconds > 60) {
     countdown.classList.add('warning');
   }
 
   /* 1 মিনিটের নিচে */
 
-  if (countdown && totalSeconds <= 60 && totalSeconds > 0) {
+  if (totalSeconds <= 60 && totalSeconds > 0) {
     countdown.classList.add('danger');
   }
 
@@ -358,23 +349,17 @@ function updateCountdown() {
   if (totalSeconds <= 0) {
     clearInterval(timer);
 
-    if (minutesElement) {
-      minutesElement.textContent = '00';
-    }
+    minutesElement.textContent = '00';
 
-    if (secondsElement) {
-      secondsElement.textContent = '00';
-    }
+    secondsElement.textContent = '00';
 
-    if (countdown) {
-      countdown.classList.add('time-ended');
-    }
+    countdown.classList.add('time-ended');
 
     localStorage.removeItem(TIMER_STORAGE_KEY);
 
     /*
-      Time শেষ হলেও Submit button থাকবে
-      এবং কাজ করবে।
+      Time শেষ হলেও Submit button
+      থাকবে এবং কাজ করবে।
     */
 
     renderAnswerSheet();
@@ -383,12 +368,11 @@ function updateCountdown() {
       সাথে সাথে Time Over alert
     */
 
-    if (timeUpOverlay) {
-      timeUpOverlay.classList.add('show');
-    }
+    timeUpOverlay.classList.add('show');
 
     /*
-      প্রতি 15 সেকেন্ড পর আবার alert
+      প্রতি 15 সেকেন্ড পর
+      আবার alert
     */
 
     if (!timeUpAlertStarted) {
@@ -397,9 +381,7 @@ function updateCountdown() {
       clearInterval(timeUpRepeatTimer);
 
       timeUpRepeatTimer = setInterval(() => {
-        if (timeUpOverlay) {
-          timeUpOverlay.classList.add('show');
-        }
+        timeUpOverlay.classList.add('show');
       }, 15000);
     }
   }
@@ -413,15 +395,28 @@ const welcomeOverlay = document.getElementById('welcomeOverlay');
 
 const readyBtn = document.getElementById('readyBtn');
 
-if (readyBtn) {
-  readyBtn.addEventListener('click', () => {
-    /* Popup বন্ধ */
+if (readyBtn && welcomeOverlay) {
+  readyBtn.addEventListener('click', (event) => {
+    event.preventDefault();
 
-    if (welcomeOverlay) {
-      welcomeOverlay.classList.add('hide');
-    }
+    event.stopPropagation();
 
-    /* Countdown শুরু */
+    /*
+        Popup completely hide
+      */
+
+    welcomeOverlay.classList.add('hide');
+
+    /*
+        CSS কাজ না করলেও
+        popup অবশ্যই hide হবে।
+      */
+
+    welcomeOverlay.style.display = 'none';
+
+    /*
+        Countdown শুরু
+      */
 
     startExamTimer();
   });
@@ -433,9 +428,7 @@ if (readyBtn) {
 
 if (closeTimeUp) {
   closeTimeUp.addEventListener('click', () => {
-    if (timeUpOverlay) {
-      timeUpOverlay.classList.remove('show');
-    }
+    timeUpOverlay.classList.remove('show');
   });
 }
 
@@ -524,10 +517,6 @@ async function getResults() {
 ===================================================== */
 
 async function renderProgress() {
-  if (!progressTableBody) {
-    return;
-  }
-
   progressTableBody.innerHTML = '<tr><td colspan="3">Loading...</td></tr>';
 
   const results = await getResults();
@@ -566,46 +555,32 @@ async function renderProgress() {
     progressTableBody.appendChild(row);
   });
 
-  if (totalExams) {
-    totalExams.textContent = results.length;
-  }
+  totalExams.textContent = results.length;
 
-  if (totalMarks) {
-    totalMarks.textContent = possible;
-  }
+  totalMarks.textContent = possible;
 
   const average = possible > 0 ? Math.round((obtained / possible) * 100) : 0;
 
-  if (averageMarks) {
-    averageMarks.textContent = `${average}%`;
-  }
+  averageMarks.textContent = `${average}%`;
 }
 
 /* =====================================================
    OPEN LOGIN / PROGRESS
 ===================================================== */
 
-if (userIconBtn) {
-  userIconBtn.addEventListener('click', () => {
-    const loggedIn = sessionStorage.getItem('lamiaLoggedIn') === 'true';
+userIconBtn.addEventListener('click', () => {
+  const loggedIn = sessionStorage.getItem('lamiaLoggedIn') === 'true';
 
-    if (loggedIn) {
-      renderProgress();
+  if (loggedIn) {
+    renderProgress();
 
-      if (progressOverlay) {
-        progressOverlay.classList.add('show');
-      }
-    } else {
-      if (loginOverlay) {
-        loginOverlay.classList.add('show');
-      }
+    progressOverlay.classList.add('show');
+  } else {
+    loginOverlay.classList.add('show');
 
-      if (loginUsername) {
-        loginUsername.focus();
-      }
-    }
-  });
-}
+    loginUsername.focus();
+  }
+});
 
 /* =====================================================
    CLOSE LOGIN
@@ -617,9 +592,7 @@ if (closeLogin) {
 
     event.stopPropagation();
 
-    if (loginOverlay) {
-      loginOverlay.classList.remove('show');
-    }
+    loginOverlay.classList.remove('show');
   });
 }
 
@@ -627,154 +600,122 @@ if (closeLogin) {
    LOGIN
 ===================================================== */
 
-if (loginBtn) {
-  loginBtn.addEventListener('click', () => {
-    const username = loginUsername ? loginUsername.value.trim() : '';
+loginBtn.addEventListener('click', () => {
+  const username = loginUsername.value.trim();
 
-    const password = loginPassword ? loginPassword.value : '';
+  const password = loginPassword.value;
 
-    if (username === USERNAME && password === PASSWORD) {
-      sessionStorage.setItem('lamiaLoggedIn', 'true');
+  if (username === USERNAME && password === PASSWORD) {
+    sessionStorage.setItem('lamiaLoggedIn', 'true');
 
-      if (loginError) {
-        loginError.textContent = '';
-      }
+    loginError.textContent = '';
 
-      if (loginOverlay) {
-        loginOverlay.classList.remove('show');
-      }
+    loginOverlay.classList.remove('show');
 
-      renderProgress();
+    renderProgress();
 
-      if (progressOverlay) {
-        progressOverlay.classList.add('show');
-      }
-    } else {
-      if (loginError) {
-        loginError.textContent = 'Username or password is incorrect.';
-      }
-    }
-  });
-}
+    progressOverlay.classList.add('show');
+  } else {
+    loginError.textContent = 'Username or password is incorrect.';
+  }
+});
 
 /* =====================================================
    ENTER KEY LOGIN
 ===================================================== */
 
-if (loginPassword) {
-  loginPassword.addEventListener('keydown', (event) => {
-    if (event.key === 'Enter') {
-      if (loginBtn) {
-        loginBtn.click();
-      }
-    }
-  });
-}
+loginPassword.addEventListener('keydown', (event) => {
+  if (event.key === 'Enter') {
+    loginBtn.click();
+  }
+});
 
 /* =====================================================
    CLOSE PROGRESS
 ===================================================== */
 
-if (closeProgress) {
-  closeProgress.addEventListener('click', () => {
-    if (progressOverlay) {
-      progressOverlay.classList.remove('show');
-    }
-  });
-}
+closeProgress.addEventListener('click', () => {
+  progressOverlay.classList.remove('show');
+});
 
 /* =====================================================
    LOGOUT
 ===================================================== */
 
-if (logoutBtn) {
-  logoutBtn.addEventListener('click', () => {
-    sessionStorage.removeItem('lamiaLoggedIn');
+logoutBtn.addEventListener('click', () => {
+  sessionStorage.removeItem('lamiaLoggedIn');
 
-    if (progressOverlay) {
-      progressOverlay.classList.remove('show');
-    }
-  });
-}
+  progressOverlay.classList.remove('show');
+});
 
 /* =====================================================
    ADD RESULT TO GOOGLE SHEETS
 ===================================================== */
 
-if (addResultBtn) {
-  addResultBtn.addEventListener('click', async () => {
-    const exam = resultExam ? resultExam.value.trim() : '';
+addResultBtn.addEventListener('click', async () => {
+  const exam = resultExam.value.trim();
 
-    const date = resultDate ? resultDate.value.trim() : '';
+  const date = resultDate.value.trim();
 
-    const score = resultScore ? Number(resultScore.value) : NaN;
+  const score = Number(resultScore.value);
 
-    const total = resultTotal ? Number(resultTotal.value) : NaN;
+  const total = Number(resultTotal.value);
 
-    /* Validation */
+  /* Validation */
 
-    if (
-      !exam ||
-      !date ||
-      !Number.isFinite(score) ||
-      !Number.isFinite(total) ||
-      total <= 0 ||
-      score < 0 ||
-      score > total
-    ) {
-      return;
+  if (
+    !exam ||
+    !date ||
+    !Number.isFinite(score) ||
+    !Number.isFinite(total) ||
+    total <= 0 ||
+    score < 0 ||
+    score > total
+  ) {
+    return;
+  }
+
+  /* Button temporarily disable */
+
+  addResultBtn.disabled = true;
+
+  try {
+    const response = await fetch(GOOGLE_SHEET_URL, {
+      method: 'POST',
+
+      body: JSON.stringify({
+        exam: exam,
+        date: date,
+        score: score,
+        total: total,
+      }),
+    });
+
+    if (!response.ok) {
+      throw new Error('Failed to save result');
     }
 
-    /* Button temporarily disable */
+    /* Clear inputs */
 
-    addResultBtn.disabled = true;
+    resultExam.value = '';
 
-    try {
-      const response = await fetch(GOOGLE_SHEET_URL, {
-        method: 'POST',
+    resultDate.value = '';
 
-        body: JSON.stringify({
-          exam: exam,
-          date: date,
-          score: score,
-          total: total,
-        }),
-      });
+    resultScore.value = '';
 
-      if (!response.ok) {
-        throw new Error('Failed to save result');
-      }
+    resultTotal.value = '';
 
-      /* Clear inputs */
+    /* Reload results */
 
-      if (resultExam) {
-        resultExam.value = '';
-      }
+    await renderProgress();
+  } catch (error) {
+    console.error('Save result error:', error);
 
-      if (resultDate) {
-        resultDate.value = '';
-      }
-
-      if (resultScore) {
-        resultScore.value = '';
-      }
-
-      if (resultTotal) {
-        resultTotal.value = '';
-      }
-
-      /* Reload results */
-
-      await renderProgress();
-    } catch (error) {
-      console.error('Save result error:', error);
-
-      alert('Result save হয়নি। আবার চেষ্টা করো।');
-    } finally {
-      addResultBtn.disabled = false;
-    }
-  });
-}
+    alert('Result save হয়নি। আবার চেষ্টা করো।');
+  } finally {
+    addResultBtn.disabled = false;
+  }
+});
 
 /* =====================================================
    DEVTOOLS REDIRECT
