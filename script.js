@@ -331,7 +331,7 @@ submitExamBtn.addEventListener('click', () => {
    COUNTDOWN TIMER
 ===================================================== */
 
-const EXAM_DURATION = 60 * 60; // 60 minutes
+const EXAM_DURATION = 20 * 60; // 60 minutes
 
 const TIMER_STORAGE_KEY = 'lamiaExamEndTime';
 
