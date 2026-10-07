@@ -218,14 +218,20 @@ questions.forEach((item, index) => {
     const option = document.createElement('div');
 
     option.className = 'option';
-
     option.textContent = optionText;
 
     option.setAttribute('role', 'button');
-
     option.setAttribute('tabindex', '0');
 
     const selectOption = () => {
+      // একই option আবার click করলে deselect হবে
+      if (selectedAnswers[index] === optionIndex) {
+        selectedAnswers[index] = null;
+        option.classList.remove('selected');
+        return;
+      }
+
+      // অন্য option select করলে আগেরটা unselect হবে
       selectedAnswers[index] = optionIndex;
 
       options.querySelectorAll('.option').forEach((el) => {
@@ -240,7 +246,6 @@ questions.forEach((item, index) => {
     option.addEventListener('keydown', (event) => {
       if (event.key === 'Enter' || event.key === ' ') {
         event.preventDefault();
-
         selectOption();
       }
     });
